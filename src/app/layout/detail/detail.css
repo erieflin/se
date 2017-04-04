@@ -1,0 +1,44 @@
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 20%;
+    margin: auto;
+}
+
+.panel-heading {
+  background-color: navy;
+}
+
+p {
+  color: white;
+}
+
+p.p1 {
+  font-size: 250%;
+    margin: -10px;
+}
+
+p.p2 {
+  font-size: 200%;
+      margin: -5px;
+}
+
+p.p3 {
+  font-size: 150%;
+}
+
+p.p4 {
+  font-size: 100%;
+}
+
+table {
+  background-color: navy;
+}
+
+li {
+  color: white;
+}
+
+button {
+   width: 200px;
+   height: 150px;
+}
