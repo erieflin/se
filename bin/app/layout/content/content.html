@@ -1,0 +1,33 @@
+<div class="panel panel-info" >
+  <div class="panel-heading se_heading"><p class="p1">Homes Available</p></div>
+  <div *ngFor="let home of homes">
+    <div class="btn-group col-md-12" role="group" aria-label="...">
+
+      <button type="button" class="btn btn-info button_large col-md-4" style="background:url('http://rebekahestey.com/cv64/se/homes/se1/images/0a.jpg')">
+        <p class="p2">{{homes[0].title1}}</p>
+        <p class="p2">{{homes[0].title2}}</p>
+        <p class="p2">{{homes[0].price}} USD</p>
+        <p class="p4">{{homes[0].address}}</p>
+        <p class="p4">{{homes[0].id}}</p>
+      </button>
+
+      <button type="button" class="btn btn-info button_large col-md-4" style="background:url('http://rebekahestey.com/cv64/se/homes/se2/images/0a.jpg')">
+        <p class="p2">{{homes[1].title1}}</p>
+        <p class="p2">{{homes[1].title2}}</p>
+        <p class="p2">{{homes[1].price}} USD</p>
+        <p class="p4">{{homes[1].address}}</p>
+        <p class="p4">{{homes[1].id}}</p>
+      </button>
+
+      <button type="button" class="btn btn-info button_large col-md-4" style="background:url('http://rebekahestey.com/cv64/se/homes/se3/images/0a.jpg')">
+        <p class="p2">{{homes[2].title1}}</p>
+        <p class="p2">{{homes[2].title2}}</p>
+        <p class="p2">{{homes[2].price}} USD</p>
+        <p class="p4">{{homes[2].address}}</p>
+        <p class="p4">{{homes[2].id}}</p>
+      </button>
+
+      <hr/>
+    </div>
+  </div>
+</div>

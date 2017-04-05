@@ -1,0 +1,20 @@
+header {
+  solid: red;
+  color: whitesmoke;
+  background-color: navy;
+}
+
+footer {
+    padding: 1em;
+    color: whitesmoke;
+    background-color: navy;
+    clear: left;
+    text-align: left;
+}
+
+content {
+    color: navy;
+    background-color: white;
+    clear: left;
+    text-align: left;
+}
