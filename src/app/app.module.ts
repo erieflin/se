@@ -11,10 +11,12 @@ import { LinksComponent }  from './layout/links/links'
 import { ContentComponent }  from './layout/content/content'
 import { DetailComponent }  from './layout/detail/detail'
 import { MapComponent }  from './layout/map/map'
+import { CarouselComponent } from './layout/carousel/carousel'
 
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent, FooterComponent, LinksComponent, ContentComponent, DetailComponent, MapComponent
+    AppComponent, HeaderComponent, FooterComponent, LinksComponent, ContentComponent,
+    DetailComponent, MapComponent, CarouselComponent
   ],
   imports: [
     BrowserModule,
