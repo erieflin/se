@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import {MarkerService} from '../../services/marker.service';
+import {DatabaseService} from '../../services/database.service';
 
 @Component({
   selector: 'map',
   templateUrl: './map.html',
   styleUrls: ['./map.css'],
-  providers: [MarkerService]
+  providers: [DatabaseService]
 })
 
 export class MapComponent {
@@ -20,8 +20,8 @@ export class MapComponent {
 
   markers: marker[];
 
-  constructor(private _markerService:MarkerService) {
-    this.markers = this._markerService.getMarkers();
+  constructor(private databaseService:DatabaseService) {
+    this.markers = this.databaseService.getMarkers();
   }
 
   clickedMarker(marker:marker, index:number) {
@@ -54,7 +54,7 @@ export class MapComponent {
     var newLat = $event.coords.lat;
     var newLng = $event.coords.lng;
 
-    this._markerService.updateMarker(updMarker, newLat, newLng);
+    this.databaseService.updateMarker(updMarker, newLat, newLng);
   }
 
     addMarker() {
@@ -75,7 +75,7 @@ export class MapComponent {
       }
 
       this.markers.push(marker);
-      this._markerService.addMarker(marker);
+      this.databaseService.addMarker(marker);
     }
 
     removeMarker(marker) {
@@ -86,7 +86,7 @@ export class MapComponent {
         }
       }
 
-      this._markerService.removeMarker(marker);
+      this.databaseService.removeMarker(marker);
     }
 }
 
