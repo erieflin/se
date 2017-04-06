@@ -25,6 +25,8 @@ export class ContentComponent {
  title1 = '';
  title2 = '';
  description = '';
+ latitude = '';
+ longitude = '';
 
  homes: Home[] = [];
 
@@ -53,11 +55,13 @@ export class ContentComponent {
         console.log('title1: ' + databaseObject[i].title1);
         console.log('title2: ' + databaseObject[i].title2);
         console.log('description: ' + databaseObject[i].description);
+        console.log('latitude: ' + databaseObject[i].latitude);
+        console.log('longitude: ' + databaseObject[i].longitude);
 
         this.homes.push(new Home(databaseObject[i].id, databaseObject[i].mapLink,
           databaseObject[i].homeLink, databaseObject[i].imageCount, databaseObject[i].address,
           databaseObject[i].price, databaseObject[i].title1, databaseObject[i].title2,
-          databaseObject[i].description));
+          databaseObject[i].description, databaseObject[i].latitude, databaseObject[i].longitude));
       }
   })
   }
@@ -75,7 +79,9 @@ export class ContentComponent {
      price:addhome.price,
      title1:addhome.title1,
      title2:addhome.title2,
-     description:addhome.description
+     description:addhome.description,
+     latitude:addhome.latitude,
+     longitude:addhome.longitude
    }
 
    this.id = home.id;
@@ -87,5 +93,7 @@ export class ContentComponent {
    this.title1 = home.title1;
    this.title2 = home.title2;
    this.description = home.description;
+   this.latitude = home.latitude;
+   this.longitude = home.longitude;
  }
 }
