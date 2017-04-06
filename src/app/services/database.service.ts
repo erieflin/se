@@ -15,7 +15,7 @@ export class DatabaseService extends Handler {
     super();
     console.log('DatabaseService.constructor');
     //this.load();
-    this.getMarkers();
+    //this.getMarkers();
   }
 
   getResponse(httpAddress:string) {
@@ -38,7 +38,7 @@ export class DatabaseService extends Handler {
         name: 'Home 3 $somevalue3', lat: 34.036105, lng: -118.492770, draggable: true
       }
     ]
-    
+
     return markers;
   }
 

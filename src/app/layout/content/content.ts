@@ -65,7 +65,7 @@ export class ContentComponent {
       }
   })
   }
-
+/*
  addHome(addhome:any) {
    console.log("Adding Home");
    console.log("Adding Home: " + addhome.id);
@@ -96,4 +96,5 @@ export class ContentComponent {
    this.latitude = home.latitude;
    this.longitude = home.longitude;
  }
+ */
 }
