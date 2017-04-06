@@ -3,43 +3,19 @@ import {Http,Response} from '@angular/http';
 import {Observable} from 'rxjs';
 import 'rxjs/Rx';
 
-import {Handler} from '../database/handler';
-
 @Injectable()
 
-export class DatabaseService extends Handler {
+export class DatabaseService {
 
-  private handleError;
+  private databaseError;
 
   constructor(private http:Http) {
-    super();
     console.log('DatabaseService.constructor');
-    //this.load();
-    //this.getMarkers();
   }
 
   getResponse(httpAddress:string) {
     console.log('DatabaseService.getResponse');
-    return this.http.get(httpAddress).map(res => {return res}).catch(this.handleError);
-  }
-
-  getMarkers() {
-    console.log('DatabaseService.getMarkers');
-    //var markers = JSON.parse(localStorage.getItem('markers'));
-
-    var markers = [
-      {
-        name: 'Home 1 $somevalue1', lat: 34.014319, lng: -118.485495, draggable: true
-      },
-      {
-        name: 'Home 2 $somevalue2', lat: 34.025212, lng: -118.496585, draggable: true
-      },
-      {
-        name: 'Home 3 $somevalue3', lat: 34.036105, lng: -118.492770, draggable: true
-      }
-    ]
-
-    return markers;
+    return this.http.get(httpAddress).map(res => {return res}).catch(this.databaseError);
   }
 
   addMarker(newMarker) {
