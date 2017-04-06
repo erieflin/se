@@ -1,48 +1,80 @@
 import { Component } from '@angular/core';
-import {MarkerService} from '../../services/marker.service';
+import {DatabaseService} from '../../services/database.service';
 
 @Component({
   selector: 'map',
   templateUrl: './map.html',
   styleUrls: ['./map.css'],
-  providers: [MarkerService]
+  providers: [DatabaseService]
 })
 
 export class MapComponent {
 
+response:any;
+
+httpAddress = 'http://rebekahestey.com/cv64/se/database/getHomes.php';
+imagesPath = 'http://rebekahestey.com/cv64/se/homes/';
+
   zoom: number = 13;
-  lat: number = 34.024212;
-  lng: number = -118.496475;
+  lat: number = 34.0737496;
+  lng: number = -118.4642746;
   markerName:string;
   markerLat:string;
   markerLng:string;
   markerDraggable:string;
 
-  markers: marker[];
+  markers: marker[] = [];
 
-  constructor(private _markerService:MarkerService) {
-    this.markers = this._markerService.getMarkers();
+  constructor(private databaseService:DatabaseService) {
+
+    console.log('MapComponent.constructor');
+
+    this.databaseService.getResponse(this.httpAddress).subscribe(value => {
+       this.response = value;
+       console.log('app.component.ts');
+       console.log('this.response.json(): ' + this.response.json());
+       console.log('JSON.stringify(this.response.json()) ' + JSON.stringify(this.response.json()));
+
+       var myJSON = JSON.stringify(this.response.json());
+       console.log('myJSON: ' + myJSON);
+
+       var databaseObject = JSON.parse(myJSON);
+       console.log('JSON.parse(myJSON): ' + databaseObject);
+
+       for(var i = 0; i < databaseObject.length; i++) {
+         console.log('id: ' + databaseObject[i].id);
+         console.log('price: ' + databaseObject[i].price);
+         console.log('latitude: ' + databaseObject[i].latitude);
+         console.log('longitude: ' + databaseObject[i].longitude);
+
+         this.markerName = databaseObject[i].price + "\n" + databaseObject[i].id;
+         this.markerLat = databaseObject[i].latitude;
+         this.markerLng = databaseObject[i].longitude;
+         this.markerDraggable = 'No';
+         this.addMarker();
+       }
+    })
   }
 
   clickedMarker(marker:marker, index:number) {
-    console.log('Clicked Marker: ' + marker.name + ' at index ' + index);
+    console.log('map.ts.clickedMarker: ' + marker.name + ' at index ' + index);
   }
 
   mapClicked($event:any) {
+    console.log('map.ts.mapClicked')
 
-    console.log('Map Clicked')
     var newMarker = {
-    name: 'Untitled',
-    lat: $event.coords.lat,
-    lng: $event.coords.lng,
-    draggable:false
-  }
+      name: 'Untitled',
+      lat: $event.coords.lat,
+      lng: $event.coords.lng,
+      draggable:false
+    }
 
-  this.markers.push(newMarker);
+    //this.markers.push(newMarker);
   }
 
   markerDragEnd(marker:any, $event:any) {
-    console.log('dragEnd', marker, $event);
+    console.log('map.ts.markerDragEnd: ', marker, $event);
 
     var updMarker = {
       name: marker.name,
@@ -54,11 +86,11 @@ export class MapComponent {
     var newLat = $event.coords.lat;
     var newLng = $event.coords.lng;
 
-    this._markerService.updateMarker(updMarker, newLat, newLng);
+    //this.databaseService.updateMarker(updMarker, newLat, newLng);
   }
 
     addMarker() {
-      console.log("Adding Marker");
+      console.log('map.ts.addMarker');
 
       if (this.markerDraggable == 'yes') {
         var isDraggable = true;
@@ -75,18 +107,21 @@ export class MapComponent {
       }
 
       this.markers.push(marker);
-      this._markerService.addMarker(marker);
+      this.databaseService.addMarker(marker);
     }
 
     removeMarker(marker) {
-      console.log('Removing Marker...');
-      for(var i = 0; i < this.markers.length; i++) {
-        if (marker.lat == this.markers[i].lat && marker.lng == this.markers[i].lng) {
-          this.markers.splice(i, 1);
-        }
-      }
+      console.log('map.ts.removeMarker');
 
-      this._markerService.removeMarker(marker);
+      /*
+        for(var i = 0; i < this.markers.length; i++) {
+          if (marker.lat == this.markers[i].lat && marker.lng == this.markers[i].lng) {
+            this.markers.splice(i, 1);
+          }
+        }
+
+        this.databaseService.removeMarker(marker);
+      */
     }
 }
 

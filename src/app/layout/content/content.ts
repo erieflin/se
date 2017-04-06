@@ -25,6 +25,8 @@ export class ContentComponent {
  title1 = '';
  title2 = '';
  description = '';
+ latitude = '';
+ longitude = '';
 
  homes: any;
  segmentedHomes: any;
@@ -37,30 +39,32 @@ private background = 'http://rebekahestey.com/cv64/se/homes/se1/images/0a.jpg';
       console.log('app.component.ts');
       console.log('this.response.json(): ' + this.response.json());
       console.log('JSON.stringify(this.response.json()) ' + JSON.stringify(this.response.json()));
-
-      var myJSON = JSON.stringify(this.response.json());
-      console.log('myJSON: ' + myJSON);
-
       this.homes= this.response.json();
-      this.breakOutHomes();
+
+
+
+	this.breakOutHomes();
   })
   }
  private breakOutHomes(){
       if(!this.homes){
       return;
       }
-      debugger;
       var primaryList = []
       var list = []
-      this.homes.forEach((item, index) => {
+      var index = 1;
+      this.homes.forEach((item) => {
         list.push(item);
         if(index%3 ==0){
           primaryList.push(list);
           list=[];
           }
+          index ++;
           });
+    primaryList.push(list);
     this.segmentedHomes= primaryList;
  }
+ /*
  addHome(addhome:any) {
    console.log("Adding Home");
    console.log("Adding Home: " + addhome.id);
@@ -74,7 +78,9 @@ private background = 'http://rebekahestey.com/cv64/se/homes/se1/images/0a.jpg';
      price:addhome.price,
      title1:addhome.title1,
      title2:addhome.title2,
-     description:addhome.description
+     description:addhome.description,
+     latitude:addhome.latitude,
+     longitude:addhome.longitude
    }
 
    this.id = home.id;
@@ -87,4 +93,5 @@ private background = 'http://rebekahestey.com/cv64/se/homes/se1/images/0a.jpg';
    this.title2 = home.title2;
    this.description = home.description;
  }
+ */
 }
